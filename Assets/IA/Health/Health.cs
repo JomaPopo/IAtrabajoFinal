@@ -8,8 +8,10 @@ public enum UnitGame
 {
     Zombie,
     Soldier,
+    Civil, // Valor añadido aquí
     None
 }
+
 public class Health : MonoBehaviour
 {
     [Header("imageUI")]
@@ -33,7 +35,7 @@ public class Health : MonoBehaviour
 
     public bool Importal = false;
     public UnitGame _UnitGame;
-    public bool IsCantView=true;
+    public bool IsCantView = true;
 
     IEnumerator HurtingMeActive(Health enemy)
     {
@@ -43,14 +45,12 @@ public class Health : MonoBehaviour
         StopCoroutine(HurtingMeroutine);
     }
 
-    public virtual void Damage(int damage,Health enemy)
+    public virtual void Damage(int damage, Health enemy)
     {
-        
         if (Importal) return;
-       
+
         if (!IsDead)
         {
-           
             if ((health - damage) > 0)
                 health -= damage;
             else
@@ -59,10 +59,8 @@ public class Health : MonoBehaviour
             if (enemy != null)
                 HurtingMeroutine = StartCoroutine(HurtingMeActive(enemy));
         }
-
     }
 
-    
     public void UpdateHealthBar()
     {
         if (HealthBarLocal != null)
@@ -75,9 +73,5 @@ public class Health : MonoBehaviour
     public virtual void LoadComponent()
     {
         health = healthMax;
-
-
     }
-
-
 }

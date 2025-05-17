@@ -1,16 +1,31 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class IACharacterActionLobo : IACharacterActions
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Ref Lobo")]
+    public HungerSystemLobo hungerSystemLobo;
+
+    private void Awake()
     {
-        
+        hungerSystemLobo = GetComponent<HungerSystemLobo>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AtacarAccion(Health saludPollo)
     {
-        
+        if (saludPollo != null && !saludPollo.IsDead)
+        {
+            saludPollo.Damage(25, GetComponent<Health>());
+
+            if (saludPollo.IsDead && hungerSystemLobo != null)
+            {
+                hungerSystemLobo.OnEatPrey();
+            }
+        }
+    }
+
+    public void Aullido()
+    {
+        // Lógica para aullido
+        Debug.Log("Auuuuu!");
     }
 }

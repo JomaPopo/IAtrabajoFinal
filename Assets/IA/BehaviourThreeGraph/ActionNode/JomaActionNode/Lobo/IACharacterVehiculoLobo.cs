@@ -1,16 +1,30 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+[RequireComponent(typeof(HungerSystemLobo))]
+public class IACharacterVehiculoLobo : IACharacterVehiculo
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Config Lobo")]
+    public float velocidadPersecucion = 10f;
+
+    public override void LoadComponent()
     {
-        
+        base.LoadComponent();
+        tipoAnimal = TipoAnimal.Lobo;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Cazar()
     {
-        
+        if (HungerSystem != null)
+        {
+            ((HungerSystemLobo)HungerSystem).OnEatPrey();
+        }
+    }
+
+    public override void MoveToEnemy()
+    {
+        if (AIEye.ViewEnemy == null) return;
+
+        agent.speed = velocidadPersecucion;
+        base.MoveToEnemy();
     }
 }

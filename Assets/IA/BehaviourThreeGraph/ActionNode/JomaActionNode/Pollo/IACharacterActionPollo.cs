@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class IACharacterActionPollo : IACharacterActions
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Ref Pollo")]
+    public HungerSystemPollo hungerSystemPollo;
+
+    private void Awake()
     {
-        
+        hungerSystemPollo = GetComponent<HungerSystemPollo>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ComerAccion(GameObject comida)
     {
-        
+        if (hungerSystemPollo != null)
+        {
+            hungerSystemPollo.OnEatFood();
+            Destroy(comida);
+        }
+    }
+
+    public void SonidoAlerta()
+    {
+        // Lógica para sonido de alerta
+        Debug.Log("Pollo en alerta!");
     }
 }
