@@ -11,11 +11,13 @@ public class IACharacterVehiculo : IACharacterControl
     Vector3 positionWander;
     float FrameRate = 0;
     float Rate = 4;
+    public HungerSystem HungerSystem { get; private set; }
     public override void LoadComponent()
     {
         base.LoadComponent();
         positionWander = RandoWander(transform.position, RangeWander);
         _CalculateDiffuse = GetComponent<CalculateDiffuse>();
+        HungerSystem = GetComponent<HungerSystem>();
     }
     public virtual void LookEnemy()
     {
@@ -98,4 +100,7 @@ public class IACharacterVehiculo : IACharacterControl
 
         MoveToPosition(positionWander);
     }
+    
+
+    
 }
