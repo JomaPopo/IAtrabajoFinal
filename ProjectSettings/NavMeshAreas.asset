@@ -13,11 +13,11 @@ NavMeshProjectSettings:
     cost: 2
   - name: 
     cost: 1
-  - name: 
+  - name: GALLINA
     cost: 1
-  - name: 
+  - name: PERRO
     cost: 1
-  - name: 
+  - name: LOBO
     cost: 1
   - name: 
     cost: 1
